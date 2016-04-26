@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <div class="top-bar">
+        <div class="row">
+            <div class="text-center">
+                <h4 style="color: white">
+                    Welcome, {{ user.get_full_name }}
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="row large-body">
+        <div class="medium-5 columns text-center">
+            {% if not request.user.wordpress_link %}
+                You have yet to update your Wordpress link. Please update it for the sake of the test.
+            {% endif %}
+            {% if request.get_full_path != '/main/' %}
+                <br>
+                <a href="{% url 'bolt_usersite:index' %}" class="button round">
+                    Main Page
+                </a>
+            {% endif %}
+            <br>
+            <a href="{% url 'bolt_usersite:profile' user.pk %}" class="button success round">
+                Edit Profile
+            </a>
+            <br>
+            <a href="{% url 'bolt_usersite:post' %}" class="button success round">
+                Create new Post
+            </a>
+        </div>
+        <div class="medium-7 columns">
+            {% block usersite_content %}
+                {% if not Post %}
+                    <h2>
+                        There are no posts currently on this page yet.
+                    </h2>
+                {% else %}
+                    {% for posts in Post %}
+                        <div class="row">
+                            <div class="medium-6 columns">
+                                <h2>
+                                    Title: {{ posts.title }}
+                                </h2>
+                            </div>
+                            <div class="medium-6 columns">
+                                <h4>
+                                    {% for category in posts.category.all %}
+                                        {% if forloop.last %}
+                                            {{ category.title }}
+                                        {% else %}
+                                            {{ category.title }},
+                                        {% endif %}
+                                    {% endfor %}
+                                </h4>
+                            </div>
+                            <div class="medium-12 columns">
+                                <h3>
+                                    Content:
+                                </h3>
+                                <p>
+                                    {{ posts.body|safe }}
+                                </p>
+                            </div>
+                            <div class="medium-12 columns">
+                                <h6>
+                                    {% for tag in posts.tag.all %}
+                                        {% if forloop.last %}
+                                            {{ tag.title }}
+                                        {% else %}
+                                            {{ tag.title }},
+                                        {% endif %}
+                                    {% endfor %}
+                                </h6>
+                            </div>
+                            <h6>
+                                Date Posted: {{ posts.posted }}
+                            </h6>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

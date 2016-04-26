@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="medium-4 columns">
+            <h3>
+                {{ user.get_full_name }}'s Profile
+            </h3>
+            <a href="{% url 'bolt_usersite:index' %}" class="button round">
+                Back to main page
+            </a>
+        </div>
+        <div class="medium-8 columns">
+            <form action="{% url 'bolt_usersite:profile' user.pk %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="button success round">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_javascript %}
+    <script type="text/javascript">
+        var $password = document.getElementById('id_password');
+        $password.type = 'password';
+        $password.readOnly = true;
+        document.getElementById('id_wordpress_pass').type = 'password';
+    </script>
+{% endblock %}

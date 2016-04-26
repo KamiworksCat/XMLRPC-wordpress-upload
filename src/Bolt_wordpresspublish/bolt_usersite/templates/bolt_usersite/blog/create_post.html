@@ -1,0 +1,40 @@
+{% extends 'bolt_usersite/main.html' %}
+{% load static %}
+{% load wysiwyg %}
+{% block head %}
+    {% wysiwyg_setup %}
+{% endblock %}
+{% block usersite_content %}
+    <h3>
+        Create Posts
+    </h3>
+    <form action="{% url 'bolt_usersite:post' %}" method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <div class="row">
+            {% for field in form %}
+                {% if field.label == 'Blog content' %}
+                    <div class="medium-3 columns">
+                        {{ field.label }}
+                    </div>
+                    <div class="medium-9 columns">
+                        {{ field }}
+                        {% wysiwyg_editor "id_body" %}
+                    </div>
+                {% else %}
+                    <div class="medium-3 columns">
+                        {{ field.label }}
+                    </div>
+                    <div class="medium-9 columns">
+                        {{ field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <input type="submit" class="button success round right">
+        <a href="{% url 'bolt_usersite:index' %}" class="button round">
+            Back
+        </a>
+    </form>
+{% endblock %}

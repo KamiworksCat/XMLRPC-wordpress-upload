@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <h2 class="text-center">
+        Bolt Test Publish to Wordpress
+    </h2>
+{% endblock %}
+{% block content %}
+    <div class="row text-center">
+        <a href="{% url 'bolt_website:login' %}" class="button large round">
+            Login In here to test Wordpress Post Publishing
+        </a>
+        <a href="{% url 'bolt_website:register' %}" class="button large round">
+            Create User
+        </a>
+    </div>
+{% endblock %}
