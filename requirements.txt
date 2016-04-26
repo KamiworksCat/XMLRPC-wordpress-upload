@@ -1,7 +1,11 @@
 Django==1.9.5
 django-after-response==0.2.1
+django-braces==1.8.1
+django-ckeditor==5.0.3
 django-debug-toolbar==1.4
 django-extra-views==0.7.1
+django-model-utils==2.5
+django-wysiwyg==0.7.1
 ecdsa==0.13
 Fabric==1.11.1
 jsonfield==1.0.3
