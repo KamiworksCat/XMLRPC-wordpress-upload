@@ -11,3 +11,10 @@ Localhost Setup
 >       And the general setup for this mini project is completed.
 >
 >       You can now run through the test simulation
+
+
+---
+Credits
+===
+> waqasjamal: https://gist.github.com/waqasjamal/7428185
+> The main xmlrpc codes are referenced from the link.
