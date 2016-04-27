@@ -18,3 +18,11 @@ Credits
 ===
 > waqasjamal: https://gist.github.com/waqasjamal/7428185
 > The main xmlrpc codes are referenced from the link.
+
+
+---
+Progress of the project
+===
+> Creating new wordpress post: Completed
+> Editing wordpress post: In progress
+> Setting featured image in wordpress post: In progress
